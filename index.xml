@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>iwarford on iwarford</title>
+    <link>https://iwarford.org/</link>
+    <description>Recent content in iwarford on iwarford</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Wed, 20 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Test</title>
+      <link>https://iwarford.org/post/org-mode-blogging/</link>
+      <pubDate>Tue, 20 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://iwarford.org/post/org-mode-blogging/</guid>
+      <description>&lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+
+&lt;p&gt;This is a test of Eric Kaschalk&#39;s &lt;a href=&#34;http://www.modernemacs.com/post/org-mode-blogging/&#34; title=&#34;Emacs Blogging Workflow&#34; target=&#34;_blank&#34;&gt;Emacs Blogging Workflow&lt;/a&gt; to see if
+everything is working properly.&lt;/p&gt;
+
+&lt;h2 id=&#34;formatting-test&#34;&gt;Formatting Test&lt;/h2&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
