@@ -5,6 +5,15 @@
     
     <url>
     
+      <loc>https://iwarford.org/post/org-mode-blogging/</loc>
+      <lastmod>2018-06-27T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>https://iwarford.org/post/</loc>
       <lastmod>2018-04-09T19:10:15+01:00</lastmod>
     </url>
@@ -24,6 +33,7 @@
     <url>
     
       <loc>https://iwarford.org/tags/emacs/</loc>
+      <lastmod>2018-06-27T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -33,6 +43,7 @@
     <url>
     
       <loc>https://iwarford.org/categories/emacs/</loc>
+      <lastmod>2018-06-27T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -42,6 +53,7 @@
     <url>
     
       <loc>https://iwarford.org/tags/org-mode/</loc>
+      <lastmod>2018-06-27T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -51,6 +63,7 @@
     <url>
     
       <loc>https://iwarford.org/categories/org-mode/</loc>
+      <lastmod>2018-06-27T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -60,15 +73,8 @@
     <url>
     
       <loc>https://iwarford.org/tags/</loc>
+      <lastmod>2018-06-27T00:00:00+00:00</lastmod>
       <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>https://iwarford.org/post/org-mode-blogging/</loc>
     </url>
     
   
