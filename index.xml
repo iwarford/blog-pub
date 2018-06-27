@@ -22,6 +22,76 @@
 everything is working properly.&lt;/p&gt;
 
 &lt;h2 id=&#34;formatting-test&#34;&gt;Formatting Test&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;select 
+    &#39;--&#39; as summary_date,
+    coalesce(nullif(ibr.name,&#39;&#39;), &#39;(Unrated Calls)&#39;) as ib_region_name, 
+    sum(total_calls) as total_calls,
+    sum(completed_calls) as completed_calls,
+    sum(raw_total_seconds) / 60 as raw_total_minutes,
+    sum(ib_total_seconds) / 60 as ib_total_minutes ,
+                s.ib_total_amount_currency as ib_total_amount_currency,
+                (ibr.per_minute_tax_charge / 100) * sum(ib_total_amount) as ib_total_amount,
+                ibr.per_minute_surcharge_currency as ib_sur_total_amount_currency,
+                ibr.per_minute_surcharge * (sum(ib_total_seconds) / 60) as ib_sur_total_amount,
+                (ibr.per_minute_tax_charge_1 / 100) * sum(ib_total_amount) as ib_total_amount_1,
+                ibr.per_minute_surcharge_curr_1 as ib_sur_total_amount_currency_1,
+                ibr.per_minute_surcharge_1 * (sum(ib_total_seconds) / 60) as ib_sur_total_amount_1,
+                (ibr.per_minute_tax_charge_2 / 100) * sum(ib_total_amount) as ib_total_amount_2,
+                ibr.per_minute_surcharge_curr_2 as ib_sur_total_amount_currency_2,
+                ibr.per_minute_surcharge_2 * (sum(ib_total_seconds) / 60) as ib_sur_total_amount_2,
+                sum(s.ib_total_amount) as ib_rated_amount,
+                case ibr.per_minute_tax_charge_name
+                   when null then &#39;&#39;
+                      else ibr.per_minute_tax_charge_name || &#39;: &#39; || to_char(ibr.per_minute_tax_charge, &#39;fm99990.999990&#39;) || &#39;%&#39;
+                end as ib_tax_charge_desc,
+                case ibr.per_minute_tax_charge_name_1
+                   when null then &#39;&#39;
+                      else ibr.per_minute_tax_charge_name_1 || &#39;: &#39; || to_char(ibr.per_minute_tax_charge_1, &#39;fm99990.999990&#39;) || &#39;%&#39;
+                end as ib_tax_charge_desc_1,
+                case ibr.per_minute_tax_charge_name_2
+                   when null then &#39;&#39;
+                      else ibr.per_minute_tax_charge_name_2 || &#39;: &#39; || to_char(ibr.per_minute_tax_charge_2, &#39;fm99990.999990&#39;) || &#39;%&#39;
+                end as ib_tax_charge_desc_2,
+                case ibr.per_minute_surcharge_name
+                   when null then &#39;&#39;
+                      else ibr.per_minute_surcharge_name || &#39;: &#39; || exchange_rate_utils.format_currency(ibr.per_minute_surcharge_currency, ibr.per_minute_surcharge, 1, 6)
+                end as ib_surcharge_desc,
+                case ibr.per_minute_surcharge_name_1
+                   when null then &#39;&#39;
+                      else ibr.per_minute_surcharge_name_1 || &#39;: &#39; || exchange_rate_utils.format_currency(ibr.per_minute_surcharge_curr_1, ibr.per_minute_surcharge_1, 1, 6)
+                end as ib_surcharge_desc_1,
+                case ibr.per_minute_surcharge_name_2
+                   when null then &#39;&#39;
+                      else ibr.per_minute_surcharge_name_2 || &#39;: &#39; || exchange_rate_utils.format_currency(ibr.per_minute_surcharge_curr_2, ibr.per_minute_surcharge_2, 1, 6)
+                end as ib_surcharge_desc_2
+from
+    timezone tz, main_summary s, region ibr
+where
+    s.switch = any(array[1606622 , 1780118 ,  1606297]::integer[])
+    and s.utc_summary_hour &amp;gt;= to_timestamp(&#39;20180601040000&#39;, &#39;YYYYMMDDHH24MISS&#39;) 
+    and s.utc_summary_hour &amp;lt; to_timestamp(&#39;20180701040000&#39;, &#39;YYYYMMDDHH24MISS&#39;) 
+    and tz.id = 353270 and s.ib_region = ibr.id 
+    and (ibr.per_minute_tax_charge  +  ibr.per_minute_surcharge  +  ibr.per_minute_tax_charge_1  +  ibr.per_minute_surcharge_1  +  ibr.per_minute_tax_charge_2  +  ibr.per_minute_surcharge_2) &amp;gt; 0
+group by
+    coalesce(nullif(ibr.name,&#39;&#39;), &#39;(Unrated Calls)&#39;), 
+    s.ib_total_amount_currency, 
+    ibr.per_minute_tax_charge, 
+    ibr.per_minute_tax_charge_name, 
+    ibr.per_minute_surcharge_currency, 
+    ibr.per_minute_surcharge, 
+    ibr.per_minute_surcharge_name,
+    ibr.per_minute_tax_charge_1,
+    ibr.per_minute_tax_charge_name_1,
+    ibr.per_minute_surcharge_curr_1,
+    ibr.per_minute_surcharge_1,
+    ibr.per_minute_surcharge_name_1,
+    ibr.per_minute_tax_charge_2,
+    ibr.per_minute_tax_charge_name_2,
+    ibr.per_minute_surcharge_curr_2,
+    ibr.per_minute_surcharge_2,
+    ibr.per_minute_surcharge_name_2;
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

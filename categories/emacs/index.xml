@@ -19,7 +19,7 @@
       
       <guid>https://iwarford.org/post/org-mode-blogging/</guid>
       <description>Overview This is a test of Eric Kaschalk&#39;s Emacs Blogging Workflow to see if everything is working properly.
-Formatting Test </description>
+Formatting Test select &#39;--&#39; as summary_date, coalesce(nullif(ibr.name,&#39;&#39;), &#39;(Unrated Calls)&#39;) as ib_region_name, sum(total_calls) as total_calls, sum(completed_calls) as completed_calls, sum(raw_total_seconds) / 60 as raw_total_minutes, sum(ib_total_seconds) / 60 as ib_total_minutes , s.ib_total_amount_currency as ib_total_amount_currency, (ibr.per_minute_tax_charge / 100) * sum(ib_total_amount) as ib_total_amount, ibr.per_minute_surcharge_currency as ib_sur_total_amount_currency, ibr.per_minute_surcharge * (sum(ib_total_seconds) / 60) as ib_sur_total_amount, (ibr.per_minute_tax_charge_1 / 100) * sum(ib_total_amount) as ib_total_amount_1, ibr.</description>
     </item>
     
   </channel>
