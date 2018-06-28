@@ -290,7 +290,7 @@ Since 10, the code to handle partitions has been moved into the database core, m
 
 
     <div class="article-style" itemprop="articleBody">
-      <h1 id="partitioning-in-postgres-10">Partitioning in Postgres 10</h1>
+      <h2 id="partitioning-in-postgres-10">Partitioning in Postgres 10</h2>
 
 <p>Partitioning is the practice of splitting up a large table in a
 relational database into multiple tables, each storing a portion of
@@ -306,7 +306,7 @@ database core, making the syntax easier to deal with, and removing
 the penalty on inserts and updates (since they no longer have to go
 through triggers).</p>
 
-<h1 id="two-dimensional-partitioning">Two-Dimensional Partitioning</h1>
+<h2 id="two-dimensional-partitioning">Two-Dimensional Partitioning</h2>
 
 <p>Partitioning is usually done on a single value.  Very often this is a
 time-based value, where each partition becomes responsible for a

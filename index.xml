@@ -16,7 +16,7 @@
       <pubDate>Thu, 28 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>https://iwarford.org/post/2d-pg_partman/</guid>
-      <description>&lt;h1 id=&#34;partitioning-in-postgres-10&#34;&gt;Partitioning in Postgres 10&lt;/h1&gt;
+      <description>&lt;h2 id=&#34;partitioning-in-postgres-10&#34;&gt;Partitioning in Postgres 10&lt;/h2&gt;
 
 &lt;p&gt;Partitioning is the practice of splitting up a large table in a
 relational database into multiple tables, each storing a portion of
@@ -32,7 +32,7 @@ database core, making the syntax easier to deal with, and removing
 the penalty on inserts and updates (since they no longer have to go
 through triggers).&lt;/p&gt;
 
-&lt;h1 id=&#34;two-dimensional-partitioning&#34;&gt;Two-Dimensional Partitioning&lt;/h1&gt;
+&lt;h2 id=&#34;two-dimensional-partitioning&#34;&gt;Two-Dimensional Partitioning&lt;/h2&gt;
 
 &lt;p&gt;Partitioning is usually done on a single value.  Very often this is a
 time-based value, where each partition becomes responsible for a
