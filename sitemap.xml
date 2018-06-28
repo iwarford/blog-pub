@@ -5,6 +5,15 @@
     
     <url>
     
+      <loc>https://iwarford.org/post/2d-pg_partman/</loc>
+      <lastmod>2018-06-28T12:25:40-04:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>https://iwarford.org/post/org-mode-blogging/</loc>
       <lastmod>2018-06-28T12:25:40-04:00</lastmod>
     </url>
@@ -32,6 +41,16 @@
     
     <url>
     
+      <loc>https://iwarford.org/categories/emacs/</loc>
+      <lastmod>2018-06-28T12:25:40-04:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>https://iwarford.org/tags/emacs/</loc>
       <lastmod>2018-06-28T12:25:40-04:00</lastmod>
       <priority>0</priority>
@@ -42,7 +61,7 @@
     
     <url>
     
-      <loc>https://iwarford.org/categories/emacs/</loc>
+      <loc>https://iwarford.org/categories/org-mode/</loc>
       <lastmod>2018-06-28T12:25:40-04:00</lastmod>
       <priority>0</priority>
     </url>
@@ -62,7 +81,57 @@
     
     <url>
     
-      <loc>https://iwarford.org/categories/org-mode/</loc>
+      <loc>https://iwarford.org/categories/pg10/</loc>
+      <lastmod>2018-06-28T12:25:40-04:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>https://iwarford.org/tags/pg10/</loc>
+      <lastmod>2018-06-28T12:25:40-04:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>https://iwarford.org/categories/pg_partman/</loc>
+      <lastmod>2018-06-28T12:25:40-04:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>https://iwarford.org/tags/pg_partman/</loc>
+      <lastmod>2018-06-28T12:25:40-04:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>https://iwarford.org/categories/postgres/</loc>
+      <lastmod>2018-06-28T12:25:40-04:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>https://iwarford.org/tags/postgres/</loc>
       <lastmod>2018-06-28T12:25:40-04:00</lastmod>
       <priority>0</priority>
     </url>

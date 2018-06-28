@@ -29,5 +29,32 @@
       <description></description>
     </item>
     
+    <item>
+      <title>Pg10</title>
+      <link>https://iwarford.org/categories/pg10/</link>
+      <pubDate>Thu, 28 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://iwarford.org/categories/pg10/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pg_partman</title>
+      <link>https://iwarford.org/categories/pg_partman/</link>
+      <pubDate>Thu, 28 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://iwarford.org/categories/pg_partman/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Postgres</title>
+      <link>https://iwarford.org/categories/postgres/</link>
+      <pubDate>Thu, 28 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://iwarford.org/categories/postgres/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
