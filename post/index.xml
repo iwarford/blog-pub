@@ -13,17 +13,6 @@
     
     
     <item>
-      <title>Two-Dimensional partitions in Postgres 10</title>
-      <link>https://iwarford.org/post/2d-pg_partman/</link>
-      <pubDate>Thu, 28 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://iwarford.org/post/2d-pg_partman/</guid>
-      <description>Partitioning in Postgres 10 Partitioning is the practice of splitting up a large table in a relational database into multiple tables, each storing a portion of the data, and having the collection of tables function as a single table.
-Historically (before version 10), Postgres handled partitioning awkwardly. It was implemented using a combination of check constraints, table inheritence and triggers.
-Since 10, the code to handle partitions has been moved into the database core, making the syntax easier to deal with, and removing the penalty on inserts and updates (since they no longer have to go through triggers).</description>
-    </item>
-    
-    <item>
       <title>Test</title>
       <link>https://iwarford.org/post/org-mode-blogging/</link>
       <pubDate>Wed, 27 Jun 2018 00:00:00 +0000</pubDate>
