@@ -23,74 +23,71 @@ everything is working properly.&lt;/p&gt;
 
 &lt;h2 id=&#34;formatting-test&#34;&gt;Formatting Test&lt;/h2&gt;
 
+&lt;h3 id=&#34;sql&#34;&gt;sql&lt;/h3&gt;
+
 &lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;select 
     &#39;--&#39; as summary_date,
     coalesce(nullif(ibr.name,&#39;&#39;), &#39;(Unrated Calls)&#39;) as ib_region_name, 
     sum(total_calls) as total_calls,
     sum(completed_calls) as completed_calls,
     sum(raw_total_seconds) / 60 as raw_total_minutes,
-    sum(ib_total_seconds) / 60 as ib_total_minutes ,
-                s.ib_total_amount_currency as ib_total_amount_currency,
-                (ibr.per_minute_tax_charge / 100) * sum(ib_total_amount) as ib_total_amount,
-                ibr.per_minute_surcharge_currency as ib_sur_total_amount_currency,
-                ibr.per_minute_surcharge * (sum(ib_total_seconds) / 60) as ib_sur_total_amount,
-                (ibr.per_minute_tax_charge_1 / 100) * sum(ib_total_amount) as ib_total_amount_1,
-                ibr.per_minute_surcharge_curr_1 as ib_sur_total_amount_currency_1,
-                ibr.per_minute_surcharge_1 * (sum(ib_total_seconds) / 60) as ib_sur_total_amount_1,
-                (ibr.per_minute_tax_charge_2 / 100) * sum(ib_total_amount) as ib_total_amount_2,
-                ibr.per_minute_surcharge_curr_2 as ib_sur_total_amount_currency_2,
-                ibr.per_minute_surcharge_2 * (sum(ib_total_seconds) / 60) as ib_sur_total_amount_2,
-                sum(s.ib_total_amount) as ib_rated_amount,
-                case ibr.per_minute_tax_charge_name
-                   when null then &#39;&#39;
-                      else ibr.per_minute_tax_charge_name || &#39;: &#39; || to_char(ibr.per_minute_tax_charge, &#39;fm99990.999990&#39;) || &#39;%&#39;
-                end as ib_tax_charge_desc,
-                case ibr.per_minute_tax_charge_name_1
-                   when null then &#39;&#39;
-                      else ibr.per_minute_tax_charge_name_1 || &#39;: &#39; || to_char(ibr.per_minute_tax_charge_1, &#39;fm99990.999990&#39;) || &#39;%&#39;
-                end as ib_tax_charge_desc_1,
-                case ibr.per_minute_tax_charge_name_2
-                   when null then &#39;&#39;
-                      else ibr.per_minute_tax_charge_name_2 || &#39;: &#39; || to_char(ibr.per_minute_tax_charge_2, &#39;fm99990.999990&#39;) || &#39;%&#39;
-                end as ib_tax_charge_desc_2,
-                case ibr.per_minute_surcharge_name
-                   when null then &#39;&#39;
-                      else ibr.per_minute_surcharge_name || &#39;: &#39; || exchange_rate_utils.format_currency(ibr.per_minute_surcharge_currency, ibr.per_minute_surcharge, 1, 6)
-                end as ib_surcharge_desc,
-                case ibr.per_minute_surcharge_name_1
-                   when null then &#39;&#39;
-                      else ibr.per_minute_surcharge_name_1 || &#39;: &#39; || exchange_rate_utils.format_currency(ibr.per_minute_surcharge_curr_1, ibr.per_minute_surcharge_1, 1, 6)
-                end as ib_surcharge_desc_1,
-                case ibr.per_minute_surcharge_name_2
-                   when null then &#39;&#39;
-                      else ibr.per_minute_surcharge_name_2 || &#39;: &#39; || exchange_rate_utils.format_currency(ibr.per_minute_surcharge_curr_2, ibr.per_minute_surcharge_2, 1, 6)
-                end as ib_surcharge_desc_2
-from
-    timezone tz, main_summary s, region ibr
-where
-    s.switch = any(array[1606622 , 1780118 ,  1606297]::integer[])
-    and s.utc_summary_hour &amp;gt;= to_timestamp(&#39;20180601040000&#39;, &#39;YYYYMMDDHH24MISS&#39;) 
-    and s.utc_summary_hour &amp;lt; to_timestamp(&#39;20180701040000&#39;, &#39;YYYYMMDDHH24MISS&#39;) 
-    and tz.id = 353270 and s.ib_region = ibr.id 
-    and (ibr.per_minute_tax_charge  +  ibr.per_minute_surcharge  +  ibr.per_minute_tax_charge_1  +  ibr.per_minute_surcharge_1  +  ibr.per_minute_tax_charge_2  +  ibr.per_minute_surcharge_2) &amp;gt; 0
-group by
-    coalesce(nullif(ibr.name,&#39;&#39;), &#39;(Unrated Calls)&#39;), 
-    s.ib_total_amount_currency, 
-    ibr.per_minute_tax_charge, 
-    ibr.per_minute_tax_charge_name, 
-    ibr.per_minute_surcharge_currency, 
-    ibr.per_minute_surcharge, 
-    ibr.per_minute_surcharge_name,
-    ibr.per_minute_tax_charge_1,
-    ibr.per_minute_tax_charge_name_1,
-    ibr.per_minute_surcharge_curr_1,
-    ibr.per_minute_surcharge_1,
-    ibr.per_minute_surcharge_name_1,
-    ibr.per_minute_tax_charge_2,
-    ibr.per_minute_tax_charge_name_2,
-    ibr.per_minute_surcharge_curr_2,
-    ibr.per_minute_surcharge_2,
-    ibr.per_minute_surcharge_name_2;
+    sum(ib_total_seconds) / 60 as ib_total_minutes 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;perl&#34;&gt;perl&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-perl&#34;&gt;    debug(&amp;quot;SQL = $sql&amp;quot;);
+    my $results = $conn-&amp;gt;selectall_arrayref($sql,{ Slice =&amp;gt; {} });
+    my %r;
+    for my $row (@$results) {
+        if (!defined $r{$row-&amp;gt;{source}}-&amp;gt;{$row-&amp;gt;{source_currency}}-&amp;gt;{$row-&amp;gt;{dest_currency}}) {
+            $r{$row-&amp;gt;{source}}-&amp;gt;{$row-&amp;gt;{source_currency}}-&amp;gt;{$row-&amp;gt;{dest_currency}};
+        }
+        push @{$r{$row-&amp;gt;{source}}-&amp;gt;{$row-&amp;gt;{source_currency}}-&amp;gt;{$row-&amp;gt;{dest_currency}}}, $row;
+    }
+
+    my %t;
+    for my $source (sort keys %r) {
+        for my $source_currency (sort keys %{$r{$source}}) {
+            for my $dest_currency (sort keys %{$r{$source}{$source_currency}}) {
+                my $tree = Set::IntervalTree-&amp;gt;new();
+                for my $row (@{$r{$source}{$source_currency}{$dest_currency}}) {
+                    $tree-&amp;gt;insert($row, $row-&amp;gt;{start_date}, $row-&amp;gt;{end_date});
+                }
+                $t{$source}{$source_currency}{$dest_currency} = $tree;
+            }
+        }
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;elisp&#34;&gt;elisp&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-lisp&#34;&gt;(load-theme &#39;tomorrow-night-blue t)
+;; Toggle between the two themes I like
+(defvar toggle-current-theme &amp;quot;blue&amp;quot;)
+(defun toggle-theme ()
+  (interactive)
+  (if (string= toggle-current-theme &amp;quot;blue&amp;quot;)
+      (progn
+	(load-theme &#39;tomorrow-night-eighties t)
+	(setq toggle-current-theme &amp;quot;eighties&amp;quot;))
+    (load-theme &#39;tomorrow-night-blue t)
+    (setq toggle-current-theme &amp;quot;blue&amp;quot;)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;bash&#34;&gt;Bash&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#!/bin/bash
+export SRCHOST=`cat /etc/local_pg_sid`
+export TMPFILE=${SRCHOST}.tmp.txt
+for e in ldata summary cdr_data cdr_mindx mdata ; do 
+  for d in  `psql postgresql://user:password@${SRCHOST}/dbname --tuples-only -A -c  &amp;quot;SELECT
+    c.relname FROM pg_class c JOIN pg_tablespace t ON c.reltablespace =
+    t.oid WHERE t.spcname = &#39;$e&#39; and relname not like &#39;pg_toast%&#39; and relname not like &#39;st_%&#39;
+    order by relname;&amp;quot;` ;  do 
+check_postgres.pl --action=bloat -u user --dbpass=password -db dbname --include $d &amp;gt;&amp;gt; ${TMPFILE} ;
+done ; done
+grep CRITICAL ${TMPFILE}|sed &#39;s/|.*//&#39;| sed &amp;quot;s/\*/\n/g&amp;quot;| sed &#39;s/.*\?(db webcdr)\(.*\?\)rows:.*\? \(wasted [a-z]\+:[0-9]\+ ([0-9]\+ ..)\).*/\1 : \2/g&#39; 
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
