@@ -13,7 +13,7 @@
     
     
     <item>
-      <title>Using pg_partman to Define a Two-Dimensional Partitioning Scheme in Postgres 10</title>
+      <title>Two-Dimensional partitions in Postgres 10</title>
       <link>https://iwarford.org/post/2d-pg_partman/</link>
       <pubDate>Thu, 28 Jun 2018 00:00:00 +0000</pubDate>
       
